@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap');
+
+.wrapper {
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+    background-color: #DBDFFD;
+    margin: 0;
+    padding: 0;
+  }

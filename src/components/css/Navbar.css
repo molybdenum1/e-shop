@@ -1,0 +1,21 @@
+
+.logo{
+    width: 60px;
+    height: 60px;
+}
+.navbox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.leftside{
+    margin: 20px auto;
+}
+.rightside {
+    text-align: right;
+    margin: 30px 150px;
+}
+.navlinks{
+    margin-right: 20px;
+    text-decoration: none;
+    color: #242F9B;
+}
