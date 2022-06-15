@@ -7,7 +7,7 @@ export default function Main() {
   return (
     <div className='wrapper'>
       <Navbar/>
-      <Products/>
+      <Products page={'Products'}/>
     </div>
   )
 }
