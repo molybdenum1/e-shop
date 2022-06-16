@@ -24,28 +24,26 @@ const AddProducts = () => {
 
     const addProduct = (e) => {
         e.preventDefault();
-        // console.log(productName, productPrice, productImg);
-        const uploadTask = storage.ref(`product-image/${productImg.name}`).put(productImg);
-        uploadTask.on('state_change', snapshot => {
+        const uploadTask = storage.ref(`product-images/${productImg.name}`).put(productImg);
+        uploadTask.on('state_changed', snapshot => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(progress);
-        }, err => {
-            setError(err.message);
-        }, () => {
-            storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
-                db.collection('Product').add({
-                    productName: productName,
-                    productPrice: Number(productPrice),
-                    productImg: url
-                }).then(() => {
-                    setProductName('');
-                    setProductPrice(0);
-                    setProductImg('');
-                    setError('');
-                    document.getElementById('file').value = '';
-                }).catch(err => setError(err.message));
-            } )
-        })
+        }, err => setError(err.message)
+            , () => {
+                storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
+                    db.collection('Products').add({
+                        ProductName: productName,
+                        ProductPrice: Number(productPrice),
+                        ProductImg: url
+                    }).then(() => {
+                        setProductName('');
+                        setProductPrice(0)
+                        setProductImg('');
+                        setError('');
+                        document.getElementById('file').value = '';
+                    }).catch(err => setError(err.message))
+                })
+            })
     }
 
 
