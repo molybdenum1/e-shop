@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import ProductCard from './ProductCard';
 
 export default function Products(props) {
   return (
-    <div>
-     <h2> {props.page}</h2>
+    <div className='product-container'>
+     {props.products.map(card => <ProductCard  key={card.ID} info={card}/>)}
     </div>
   )
 }

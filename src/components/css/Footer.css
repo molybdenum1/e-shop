@@ -1,0 +1,24 @@
+.footer{
+    text-align: center;
+    background-color: #242F9B;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+.footer-col{
+
+}
+.footer-info{
+    color: white;
+    font-size: 14pt;
+    margin-bottom: 20px;
+}
+.footer-links{
+    display: flex;
+    justify-content: center;
+}
+.foot-link{
+    margin: 10px 30px;
+    color: white;
+
+}

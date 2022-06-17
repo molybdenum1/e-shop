@@ -1,8 +1,8 @@
 import './css/Navbar.css';
 import logo from '../static/img/logo.jpg';
 import {Link, useNavigate} from 'react-router-dom';
-import {Icon} from 'react-icons-kit'
-import {shoppingCart} from 'react-icons-kit/feather/shoppingCart'
+import {Icon} from 'react-icons-kit';
+import {shoppingCart} from 'react-icons-kit/feather/shoppingCart';
 import React from 'react';
 import {auth} from '../config/config';
 
@@ -19,7 +19,10 @@ export default function Navbar(props) {
   return (
     <div className='navbox'>
       <div className='leftside'>
-        <img src={logo} alt="" className='logo'/>
+        <Link to='/' className='navlinks'>
+          <img src={logo} alt="" className='logo'/>
+        </Link>
+        
       </div>
       <div className='rightside'>
        
@@ -34,8 +37,8 @@ export default function Navbar(props) {
                 <Icon icon={shoppingCart} size={20}/>
               </Link>
              {/* <span className='cart-indicator'>{totalQty}</span> */}
-              <div className='navlinks'
-                  onClick={handleLogout}>LOGOUT</div>
+              <button className='logout-btn'
+                  onClick={handleLogout}>LOGOUT</button>
         </>}         
       </div>
     </div>

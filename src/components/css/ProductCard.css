@@ -1,0 +1,19 @@
+.product-container{
+    display: flex;
+}
+.productCard{
+    background-color: #9BA3EB;
+    margin: 20px 20px;
+    text-align: center;
+    padding: 10px 10px;
+    width: 400px;
+    border-radius: 10px;
+}
+.productImg{
+    height: 150px;
+    width: 200px;
+}
+.product-info{
+    color: white;
+    margin: 10px;
+}
