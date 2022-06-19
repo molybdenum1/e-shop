@@ -3,10 +3,27 @@ import React, {useState, useEffect}  from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Products from './Products';
+import {useNavigate} from 'react-router-dom';
 import svg from '../static/svg/three-dots.svg';
 import {auth, db} from '../config/config';
 
-export default function Main() {
+export default function Main(props) {
+
+  const history = useNavigate();
+
+  function GetUserId() {
+    const [uid, setUID]=useState(null);
+    useEffect(() => {
+      auth.onAuthStateChanged(user=>{
+        if(user){
+          setUID(user.uid);
+        }
+      })
+    }, [])
+    return uid;
+  }
+
+  const uid = GetUserId();
 
   // getting current user function
   function GetCurrentUser(){
@@ -45,6 +62,25 @@ export default function Main() {
     getProducts(); 
   }, [])
 
+  let Product;
+
+
+  const addToCart = (product) => {
+    if(uid !== null){
+      // console.log(product);
+      Product = product;
+      Product['qty'] = 1;
+      Product['TotalProductPrice'] = +(Product.qty) * +(Product.productPrice);
+      db.collection('Cart ' + uid).doc(product.ID).set(Product).then(() => {
+        console.log('successfully added ');
+      })
+
+    }else{
+      history('/login');
+    }
+    
+  }
+
   return (
     <>
       <div className='wrapper'>
@@ -53,7 +89,7 @@ export default function Main() {
           <div className='container-fluid'>
             <h1>Products</h1>
             <div className='products-box'>
-              <Products products={products}/>
+              <Products products={products} addToCart={addToCart}/>
             </div>
           </div>
         )}

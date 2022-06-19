@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import React,{useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import Navbar from './Navbar';
-import {auth,} from '../config/config'
-// import {useHistory} from 'react-router-dom'
+import Footer from './Footer';
+import {auth,} from '../config/config';
+
 
 export const Login = () => {
 
@@ -30,40 +31,44 @@ export const Login = () => {
     }
 
     return (
-        <div className='wrapper'>
-        <Navbar/>
-        <div  className='add-products-container'>
+       <>
+         <div className='wrapper'>
+            <Navbar/>
+            <div  className='add-products-container'>
 
-            <br></br>
-            <br></br>
-            <h1>Login</h1>
-            <hr></hr>
-            {successMsg&&<>
-                <div className='success-msg'>{successMsg}</div>
                 <br></br>
-            </>}
-            <form className='form-group' autoComplete="off"
-            onSubmit={handleLogin}>               
-                <label>Email</label>
-                <input type="email" className='form-control' required
-                onChange={(e)=>setEmail(e.target.value)} value={email}></input>
                 <br></br>
-                <label>Password</label>
-                <input type="password" className='form-control' required
-                onChange={(e)=>setPassword(e.target.value)} value={password}></input>
-                <br></br>
-                <div className='btn-box'>
-                    <span>Don't have an account SignUp
-                    <Link to="signup" className='link'> Here</Link></span>
-                    <br/>
-                    <button type='submit' className='mybtn'>Login</button>
-                </div>
-            </form>
-            {errorMsg&&<>
-                <br></br>
-                <div className='error-msg'>{errorMsg}</div>                
-            </>}
+                <h1>Login</h1>
+                <hr></hr>
+                {successMsg&&<>
+                    <div className='success-msg'>{successMsg}</div>
+                    <br></br>
+                </>}
+                <form className='form-group' autoComplete="off"
+                onSubmit={handleLogin}>               
+                    <label>Email</label>
+                    <input type="email" className='form-control' required
+                    onChange={(e)=>setEmail(e.target.value)} value={email}></input>
+                    <br></br>
+                    <label>Password</label>
+                    <input type="password" className='form-control' required
+                    onChange={(e)=>setPassword(e.target.value)} value={password}></input>
+                    <br></br>
+                    <div className='btn-box'>
+                        <span>Don't have an account SignUp
+                        <Link to="signup" className='link'> Here</Link></span>
+                        <br/>
+                        <button type='submit' className='mybtn'>Login</button>
+                    </div>
+                </form>
+                {errorMsg&&<>
+                    <br></br>
+                    <div className='error-msg'>{errorMsg}</div>                
+                </>}
+            </div>
+            
         </div>
-        </div>
+        <Footer/>
+       </>
     )
 }
