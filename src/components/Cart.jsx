@@ -4,6 +4,7 @@ import React, {useState, useEffect}  from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CartProducts from './CartProducts';
+import StripeCheckout from 'react-stripe-checkout';
 
 export default function Cart() {
 
@@ -47,6 +48,15 @@ export default function Cart() {
         })
     },[])
 
+    //getting the qty from cartProducts in a seperate array
+    //reducing the qty in a single value
+    const totalQty = cartProducts.map(cartProduct=>cartProduct.qty)
+                             .reduce(((accumulatore, currentValue) => accumulatore + currentValue), 0)
+ 
+    //
+    const totalPrice = cartProducts.map(cartProduct=>cartProduct.TotalProductPrice)
+                              .reduce(((accumulatore, currentValue) => accumulatore + currentValue), 0)
+
     let Product;
   
     //cart product increase function
@@ -89,7 +99,7 @@ export default function Cart() {
   return (
     <div>
       <div className='wrapper'>
-        <Navbar user={user}/>
+        <Navbar user={user} totalQty={totalQty}/>
 
           {cartProducts.length > 0 && (
               <div className='container-fluid'>
@@ -99,6 +109,18 @@ export default function Cart() {
                     cartProductIncrease={cartProductIncrease}
                     cartProductDecrease={cartProductDecrease}/>
                   </div>
+                  <div className='summary-box'>
+                    <h5>Cart Summary</h5>
+                    <br></br>
+                    <div>
+                        Total No of Products: <span>{totalQty}</span>
+                    </div>
+                    <div>
+                        Total Price to Pay: <span>$ {totalPrice} </span>
+                    </div>
+                    <br></br>
+                    <StripeCheckout></StripeCheckout>
+                  </div>          
               </div>
           )}
           {cartProducts.length < 1 && (

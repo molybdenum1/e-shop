@@ -62,8 +62,22 @@ export default function Main(props) {
     getProducts(); 
   }, [])
 
-  let Product;
+  // state of totalProducts
+  const [totalProducts, setTotalProducts]=useState(0);
+  // getting cart products   
+  useEffect(()=>{        
+      auth.onAuthStateChanged(user=>{
+          if(user){
+              db.collection('Cart ' + user.uid).onSnapshot(snapshot=>{
+                  const qty = snapshot.docs.length;
+                  setTotalProducts(qty);
+              })
+          }
+      })       
+  },[])  
 
+
+  let Product;
 
   const addToCart = (product) => {
     if(uid !== null){
@@ -84,7 +98,7 @@ export default function Main(props) {
   return (
     <>
       <div className='wrapper'>
-        <Navbar user={user}/>
+        <Navbar user={user} totalQty={totalProducts}/>
         {products.length > 0 && (
           <div className='container-fluid'>
             <h1>Products</h1>

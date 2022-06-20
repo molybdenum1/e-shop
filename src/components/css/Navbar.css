@@ -15,9 +15,18 @@
     margin: 30px 150px;
 }
 .navlinks{
-    margin-right: 20px;
+    margin-left: 20px;
     text-decoration: none;
     color: #242F9B;
+}
+.cart-indicator{
+    font-size: 12pt;
+    background-color: #242F9B;
+    border-radius: 2px;
+    color: white;
+    
+    margin-bottom: 10px;
+    height: 50%;
 }
 .logout-btn{
   background-color: #242F9B;
@@ -26,4 +35,5 @@
   border-style: none;
   border-radius: 5px;
   margin-top: 10px;
+  margin-left: 10px;
 }
