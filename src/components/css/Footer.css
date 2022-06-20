@@ -3,7 +3,7 @@
     background-color: #242F9B;
     padding: 20px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
 }
 .footer-col{
 
@@ -12,6 +12,8 @@
     color: white;
     font-size: 14pt;
     margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
 }
 .footer-links{
     display: flex;
@@ -20,5 +22,14 @@
 .foot-link{
     margin: 10px 30px;
     color: white;
-
+}
+.foot-sec{
+    display: flex;
+    flex-direction: row;
+    
+}
+.foot-section{
+    color: white;
+    font-size: 14pt;
+    margin-top: 5px;
 }

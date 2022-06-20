@@ -46,23 +46,65 @@ export default function Cart() {
             }
         })
     },[])
+
+    let Product;
   
-    console.log(cartProducts)
+    //cart product increase function
+    const cartProductIncrease = (cartProduct) => {
+        // console.log(cartProduct)
+        Product = cartProduct;
+        Product.qty = Product.qty + 1;
+        Product.TotalProductPrice = Product.qty * Product.productPrice;
+        //update database 
+        auth.onAuthStateChanged(user => {
+            if(user){
+                db.collection('Cart ' + user.uid).doc(cartProduct.ID).update(Product).then(() => {
+                    console.log('incremented')
+                })
+            }else{
+                console.log('not sighed in');
+            }
+        })
+    }
+    //cart product decrease function
+    const cartProductDecrease = (cartProduct) => {
+        // console.log(cartProduct)
+        Product = cartProduct;
+        if(Product.qty > 1){
+            Product.qty = Product.qty - 1;
+            Product.TotalProductPrice = Product.qty * Product.productPrice;
+        }
+        //update database 
+        auth.onAuthStateChanged(user => {
+            if(user){
+                db.collection('Cart ' + user.uid).doc(cartProduct.ID).update(Product).then(() => {
+                    console.log('decreamented')
+                })
+            }else{
+                console.log('not signed in');
+            }
+        })
+    }
 
   return (
     <div>
-      <Navbar user={user}/>
-      <div className='cart'>
-          <h1>Cart</h1>
+      <div className='wrapper'>
+        <Navbar user={user}/>
+
           {cartProducts.length > 0 && (
               <div className='container-fluid'>
                   <div className='products-cart'>
-                      <CartProducts cartProducts={cartProducts}/>
+                    <h1>Cart</h1>
+                    <CartProducts cartProducts={cartProducts}
+                    cartProductIncrease={cartProductIncrease}
+                    cartProductDecrease={cartProductDecrease}/>
                   </div>
               </div>
           )}
           {cartProducts.length < 1 && (
-              <div className='container-fluid'>No products to show</div>
+              <div className='container-fluid'>
+                  <h1>No products to show</h1>
+              </div>
           )}
       </div>
       <Footer/>

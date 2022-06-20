@@ -1,3 +1,32 @@
 .cart{
     text-align: center;
+    margin: 10px 90px;
+}
+.product{
+    display: flex;
+    justify-content: space-around;
+    margin: 25px auto;
+    font-size: 14pt;
+    align-items: center;
+    background-color: #646FD4;
+    color: white;
+    padding: 10px;
+    border-radius: 7px;
+}
+.product-text{
+    display: flex;
+    justify-content: center;
+}
+.action-btns{
+    margin: 0 10px;
+    background-color: #242F9B;
+    border-radius: 5px;
+    padding: 1px;
+}
+.delete-from-cart{
+    background-color: #242F9B;
+    height: 10%;
+    border-radius: 7px;
+    color: white;
+    padding: 10px;
 }

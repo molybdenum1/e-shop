@@ -10,7 +10,10 @@ const Footer = () => {
   return (
     <div className='footer'>
       <div className='footer-col'>
-        <div className='footer-info'>Ⓒ2022 E_SHOP || All Rights Reserved</div>
+        <div className='footer-info'>
+          <h2>Social Media</h2>
+        </div>
+       
         <div className='footer-links'>
             <div className='foot-link'>
                 <Icon icon={facebook_2} size={40}/>
@@ -28,20 +31,38 @@ const Footer = () => {
       </div>
       <div className='footer-col'>
           <div className='footer-info'>
-              <h3>hihi</h3>
+              <h3>Company</h3>
           </div>
-      </div>
-      <div className='footer-col'>
-        <div className='footer-info'>
-            <h3>haha</h3>
+          <div className='footer-sec'>
+            <div className='foot-section'>
+                About Us
+            </div>
+            <div className='foot-section'>
+                FAQ
+            </div>
+            <div className='foot-section'>
+                Contact Us
+            </div>
         </div>
       </div>
       <div className='footer-col'>
         <div className='footer-info'>
-            <h3>hihi</h3>
+            <h3>Legal</h3>
+        </div>
+        <div className='footer-sec'>
+        <div className='foot-section'>
+                Terms & Conditions
+            </div>
+            <div className='foot-section'>
+                Privacy Policy
+            </div>
+            <div className='foot-section'>
+                Disclaimer
+            </div>
         </div>
       </div>
       
+      <div className='footer-info'>Ⓒ2022 E_SHOP || All Rights Reserved</div>
     </div>
   )
 }
