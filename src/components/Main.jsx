@@ -97,8 +97,9 @@ export default function Main(props) {
 
   return (
     <>
+       <Navbar user={user} totalQty={totalProducts}/>
       <div className='wrapper'>
-        <Navbar user={user} totalQty={totalProducts}/>
+     
         {products.length > 0 && (
           <div className='container-fluid'>
             <h1>Products</h1>

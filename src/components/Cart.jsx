@@ -5,6 +5,14 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import CartProducts from './CartProducts';
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 export default function Cart() {
 
@@ -96,8 +104,41 @@ export default function Cart() {
         })
     }
 
+    // Charging payment
+    const history = useNavigate();
+    const handleToken = async(token) => {
+        // console.log(token);
+        const cart = {name: 'All Products', totalPrice}
+        const response = await axios.post('http://localhost:8080/checkout', {
+            token,
+            cart
+        })
+        // console.log(response);
+        let {status} = response.data;
+        if(status === 'success'){
+            history('/');
+            toast.success('Your order has been placed successfully', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+              const uid = auth.currentUser.uid;
+              const carts = await db.collection('Cart ' + uid).get();
+              for(var snap of carts.docs){
+                  db.collection('Cart ' + uid).doc(snap.id).delete();
+              }
+        }else {
+            alert('smth went wrong');
+        }
+    }
+
   return (
     <div>
+        <ToastContainer />
       <div className='wrapper'>
         <Navbar user={user} totalQty={totalQty}/>
 
@@ -119,7 +160,14 @@ export default function Cart() {
                         Total Price to Pay: <span>$ {totalPrice} </span>
                     </div>
                     <br></br>
-                    <StripeCheckout></StripeCheckout>
+                    <StripeCheckout
+                        stripeKey='pk_test_51LDrSXJrpEnc6OSXmDwYph3g9bLbBZPrthUo1bbzWAuutMGPv1Nt5xno6KAUmrKAdLgFVsnbyIOid3fbAQyJvidG00O14bp0dD'
+                        token={handleToken}
+                        billingAddress
+                        shippingAddress
+                        name='All Products'
+                        amount={totalPrice * 100}
+                    ></StripeCheckout>
                   </div>          
               </div>
           )}

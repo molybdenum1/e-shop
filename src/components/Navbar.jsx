@@ -36,7 +36,7 @@ export default function Navbar(props) {
               <Link className='navlinks' to="/cart">
                 <Icon icon={shoppingCart} size={20}/>
               </Link>
-             <span className='cart-indicator'>{props.totalQty}</span>
+             <sup><span className='cart-indicator'>{props.totalQty}</span></sup>
               <button className='logout-btn'
                   onClick={handleLogout}>LOGOUT</button>
         </>}         
